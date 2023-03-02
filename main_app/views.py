@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Cat
 
 # temporary cats for building templates
 # views.py
@@ -24,6 +25,8 @@ def about(request):
 # cats index view
 def cats_index(request):
   # We pass data to a template very much like we did in Express!
+  # gather relations from SQL using model methods
+  cats = Cat.objects.all()
   return render(request, 'cats/index.html', {
     'cats': cats
   })
