@@ -27,6 +27,10 @@ def cats_index(request):
   # We pass data to a template very much like we did in Express!
   # gather relations from SQL using model methods
   cats = Cat.objects.all()
-  return render(request, 'cats/index.html', {
-    'cats': cats
-  })
+  return render(request, 'cats/index.html', { 'cats': cats })
+
+# detail route for cats
+# cat_id is defined, expecting integer, in url
+def cats_detail(request, cat_id):
+  cat = Cat.objects.get(id=cat_id)
+  return render(request, 'cats/detail.html', { 'cat': cat })
