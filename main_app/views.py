@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Cat
 
 
@@ -45,7 +45,11 @@ class CatCreate(CreateView):
   # could have also written fields like this:
   # fields = ['name', 'breed', 'description', 'age']
 
-  # need to add a redirect on success
-  # success_url = '/cats/{cat_id}'
+class CatUpdate(UpdateView):
+  model = Cat
+  # disallow the renaming of a cat by excluding the name field!
+  fields = ['breed', 'description', 'age']
 
-  
+class CatDelete(DeleteView):
+  model = Cat
+  success_url = '/cats'
